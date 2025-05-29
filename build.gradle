@@ -10,10 +10,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+    testImplementation 'com.codeborne:selenide:7.0.2'
 }
 
 test {
     useJUnitPlatform()
+    if (project.hasProperty("includeTags")) {
+        useJUnitPlatform {
+            includeTags project.property("includeTags").split(",")
+        }
+    }
 }
