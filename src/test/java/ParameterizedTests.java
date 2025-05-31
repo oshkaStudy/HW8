@@ -2,6 +2,7 @@ import Data.OptionTypes;
 import PageComponents.GridComponent;
 import PageComponents.NavigateBar;
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,12 +16,14 @@ import static com.codeborne.selenide.Selenide.*;
 @DisplayName("Кофейные тесты")
 public class ParameterizedTests {
 
-    @BeforeEach
-    void setupConfig() {
-
+    @BeforeAll
+    static void setupConfig() {
         Configuration.baseUrl = "https://shop.tastycoffee.ru";
         Configuration.browserSize = "1920x1080";
+    }
 
+    @BeforeEach
+    void openMainPage() {
         open("/");
     }
 
